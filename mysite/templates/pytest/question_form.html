@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h4 class="my-3 border-bottom pb-2">게시글 작성</h4>
+    <form method="post" class="post-form my-3" action="{% url 'pytest:question_create' %}">
+        {% csrf_token %}
+        {% if form.error %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {% if field.errors %}
+                    <strong> {{ field.label }}</strong>
+                    {{ field.errors }}
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="form-group">
+            <label for="subject"> title </label>
+            <input type="text" class="form-control" name="subject" id="subject" value="{{ form.subject.valuedefault_if_none:'' }}">
+        </div>
+        <div class="form-group">
+            <label for="content"> contents </label>
+            <textarea class="form-control" name="content" id="content" rows="10">
+                {{ form.content.valuedefault_if_none:'' }}
+            </textarea>
+        </div>
+        <!-- {{ form.as_p}} -->
+        <button type="submit" class="btn btn-primary"> 작성 </button>
+    </form>
+</div>
+{% endblock %}

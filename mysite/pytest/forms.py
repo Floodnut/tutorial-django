@@ -1,0 +1,21 @@
+from django import forms
+from django.forms import widgets
+from pytest.models import Question
+
+class QuestionForm(forms.ModelForm):
+    class Meta:
+        model = Question
+        fields = ['subject','content']
+        '''
+        widgets ={
+            'subject': forms.TextInput(attrs={'class':'form-control'}),
+            'content': forms.Textarea(attrs={
+                'class' :'forms-control',
+                'rows':10
+                }),
+        }
+        '''
+        labels = {
+            'subject':'제목',
+            'content':'내용',
+        }

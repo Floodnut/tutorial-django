@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+
+<h1>
+    제목 : {{question.subject}}
+</h1>
+<div>
+    <h4>내용</h4>
+    {{question.content}}
+</div>
+<hr witdh = "10%" color="black">
+<h5>댓글 ( {{question.answer_set.count}} )</h5>
+<div>
+    <ul>
+        {% for answer in question.answer_set.all %}
+        <li>{{answer.content}}</li>
+        {% endfor %}
+    </ul>
+</div>
+<hr witdh = "10%" color="grey">
+<form action="{% url 'pytest:answer_create' question.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="content" id="content" rows="15">댓글</textarea>
+    <input type="submit" value="comment">
+</form>
