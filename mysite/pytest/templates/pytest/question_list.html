@@ -1,0 +1,21 @@
+{% if question_list %}
+    <ul>
+    {% for question in question_list %}
+        <li>    
+            <!--
+                <a href="/pytest/{{ question.id }}/">{{ question.subject }}
+                    <div><a href="/pytest/{{ question.id }}/">{{ question.content }}</a></div>
+                    <br>
+                </a>
+            -->
+            <!-- for url nicname -->
+            <a href ="{% url 'pytest:detail' question.id %}">
+                {{ question.subject}}
+            </a>
+        </li>
+        <br>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>질문이 없습니다.</p>
+{% endif %}

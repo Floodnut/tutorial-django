@@ -17,6 +17,14 @@ from django.urls import path
 
 from . import views
 
+#for app_name duplicate problem
+app_name = 'pytest'
+
 urlpatterns = [
-    path('',views.index),
+    #path('',views.index),
+    #path('<int:question_id>/',views.detail),
+
+    #for url nicname
+    path('',views.index,name='index'),
+    path('<int:question_id>/',views.detail,name='detail'),
 ]
