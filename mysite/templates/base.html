@@ -9,7 +9,13 @@
         <title> django tutorial! </title>
     </head>
     <body>
+        {% include "navbar.html" %}
+        <!-- template contents -->
         {% block content %} 
         {% endblock %}
+        <!-- jQuery -->
+        <script src="{% static 'jquery-3.6.0.min.js' %}"></script>
+        <!-- Bootstrap -->
+        <script src="{% static 'bootstrap.min.js' %}"></script>
     </body>
 </html>
