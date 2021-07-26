@@ -10,8 +10,14 @@ from django.core.paginator import Paginator
 
 def index(request):
     #return HttpResponse("test")
+    #input parameter
+    page = request.GET.get('page','1')
     question_list = Question.objects.order_by('-create_date')
-    context = {'question_list': question_list}
+    #for paging
+    paginator = Paginator(question_list, 10)
+    page_obj = paginator.get_page(page)
+    context = {'question_list':page_obj}
+    #context = {'question_list': question_list}
     return render(request, 'pytest/question_list.html', context)
 
 def detail(request,question_id):
